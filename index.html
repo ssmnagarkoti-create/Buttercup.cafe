@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buttercup Cafe | A Little Cup of Happiness</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #faf8f0;
+  --yellow: #f2df9e;
+  --brown: #594936;
+  --sage: #899477;
+  --muted: #827a6b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--brown);
+  font-family: 'DM Sans', sans-serif;
+}
+
+nav {
+  height: 76px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8%;
+  background: var(--cream);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #eee9dc;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 27px;
+  letter-spacing: 1px;
+}
+
+.logo span { color: #b69a55; }
+
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.navlinks a {
+  color: var(--brown);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.navlinks a:hover { color: #b69a55; }
+
+.nav-button {
+  background: var(--brown);
+  color: white !important;
+  padding: 12px 20px;
+  border-radius: 30px;
+}
+
+.menu-toggle {
+  display: none;
+  border: none;
+  background: none;
+  font-size: 25px;
+  color: var(--brown);
+}
+
+.hero {
+  min-height: 570px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 65px 8%;
+  gap: 45px;
+}
+
+.eyebrow {
+  color: var(--sage);
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 1.12;
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+
+.hero h1 span {
+  color: #b69a55;
+  font-style: italic;
+}
+
+.hero p {
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 420px;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.primary-btn {
+  display: inline-block;
+  background: var(--brown);
+  color: white;
+  text-decoration: none;
+  padding: 15px 27px;
+  border-radius: 30px;
+  font-size: 13px;
+  transition: .3s;
+}
+
+.primary-btn:hover {
+  background: var(--sage);
+  transform: translateY(-3px);
+}
+
+.hero-image {
+  height: 450px;
+  width: 100%;
+  border-radius: 48% 48% 12px 12px;
+  object-fit: cover;
+}
+
+.section {
+  padding: 85px 8%;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.section-desc {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0 auto 45px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.feature {
+  padding: 35px 22px;
+  background: #f2eee3;
+  border-radius: 15px;
+}
+
+.feature .emoji {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.menu-section { background: #f2eee3; }
+
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 35px;
+}
+
+.filter {
+  padding: 10px 22px;
+  border-radius: 25px;
+  border: 1px solid #c9bea7;
+  background: transparent;
+  color: var(--brown);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.filter.active,
+.filter:hover {
+  background: var(--brown);
+  color: white;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+
+.menu-card {
+  background: var(--cream);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.menu-card:hover { transform: translateY(-6px); }
+
+.menu-card img {
+  width: 100%;
+  height: 205px;
+  object-fit: cover;
+}
+
+.menu-info { padding: 20px; }
+
+.menu-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.menu-info p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+.price {
+  font-weight: bold;
+  color: #9b8147;
+  font-size: 15px;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+  text-align: left;
+}
+
+.story img {
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.story-text p {
+  color: var(--muted);
+  line-height: 2;
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.visit { background: #e9e7d9; }
+
+.visit p {
+  color: var(--muted);
+  margin: 15px 0 25px;
+  line-height: 1.8;
+}
+
+footer {
+  padding: 45px 8%;
+  background: #514536;
+  color: white;
+  text-align: center;
+}
+
+footer h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+footer p {
+  font-size: 12px;
+  color: #e2d9ca;
+  line-height: 2;
+}
+
+footer .copyright {
+  margin-top: 25px;
+  color: #c6bba8;
+}
+
+@media(max-width: 750px) {
+  nav { padding: 0 5%; }
+
+  .menu-toggle { display: block; }
+
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    background: var(--cream);
+    flex-direction: column;
+    padding: 25px;
+    border-bottom: 1px solid #eee9dc;
+  }
+
+  .navlinks.show { display: flex; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 55px 7%;
+    gap: 30px;
+  }
+
+  .hero-image { height: 340px; }
+
+  .features,
+  .menu-grid,
+  .gallery { grid-template-columns: 1fr; }
+
+  .story {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .story img { height: 300px; }
+
+  .section { padding: 65px 7%; }
+
+  .section-title { font-size: 34px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">BUTTERCUP<span>✿</span></div>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <div class="navlinks" id="navlinks">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">Our Story</a>
+    <a href="#menu" onclick="closeMenu()">Menu</a>
+    <a href="#gallery" onclick="closeMenu()">Gallery</a>
+    <a href="#visit" class="nav-button" onclick="closeMenu()">Visit Us</a>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div>
+    <div class="eyebrow">WELCOME TO BUTTERCUP</div>
+    <h1>A little cup of <span>happiness.</span></h1>
+    <p>
+      Good coffee, fresh treats and cozy little moments.
+      Your favorite corner to slow down, relax and enjoy life.
+    </p>
+    <a href="#menu" class="primary-btn">Explore Our Menu →</a>
+  </div>
+
+  <img class="hero-image"
+  src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1000"
+  alt="Coffee and cafe treats">
+</section>
+
+<section class="section">
+  <div class="eyebrow">THE BUTTERCUP FEELING</div>
+  <h2 class="section-title">Made for little moments</h2>
+  <p class="section-desc">A cozy space, a warm cup and something delicious.</p>
+
+  <div class="features">
+    <div class="feature">
+      <div class="emoji">☕</div>
+      <h3>Freshly Brewed</h3>
+      <p>Comfort in every cup, made with care.</p>
+    </div>
+
+    <div class="feature">
+      <div class="emoji">🥐</div>
+      <h3>Sweet Treats</h3>
+      <p>Fresh bites and lovely little indulgences.</p>
+    </div>
+
+    <div class="feature">
+      <div class="emoji">🌼</div>
+      <h3>Cozy Moments</h3>
+      <p>Your happy place for slowing down.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section menu-section" id="menu">
+  <div class="eyebrow">SOMETHING DELICIOUS</div>
+  <h2 class="section-title">Our little menu</h2>
+  <p class="section-desc">A few favorites to make your day sweeter.</p>
+
+  <div class="filters">
+    <button class="filter active" onclick="filterMenu('all',this)">All</button>
+    <button class="filter" onclick="filterMenu('coffee',this)">Coffee</button>
+    <button class="filter" onclick="filterMenu('dessert',this)">Desserts</button>
+    <button class="filter" onclick="filterMenu('snack',this)">Snacks</button>
+  </div>
+
+  <div class="menu-grid">
+
+    <div class="menu-card" data-category="coffee">
+      <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=700" alt="Latte">
+      <div class="menu-info">
+        <h3>Vanilla Latte</h3>
+        <p>Smooth espresso with creamy milk.</p>
+        <div class="price">Rs. 280</div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-category="coffee">
+      <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=700" alt="Iced coffee">
+      <div class="menu-info">
+        <h3>Iced Coffee</h3>
+        <p>Chilled coffee for a refreshing break.</p>
+        <div class="price">Rs. 250</div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-category="dessert">
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=700" alt="Cake">
+      <div class="menu-info">
+        <h3>Chocolate Cake</h3>
+        <p>Soft, rich and chocolatey.</p>
+        <div class="price">Rs. 320</div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-category="dessert">
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=700" alt="Dessert">
+      <div class="menu-info">
+        <h3>Berry Parfait</h3>
+        <p>Layers of creamy goodness and berries.</p>
+        <div class="price">Rs. 300</div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-category="snack">
+      <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=700" alt="Croissant">
+      <div class="menu-info">
+        <h3>Butter Croissant</h3>
+        <p>Golden, flaky and freshly baked.</p>
+        <div class="price">Rs. 180</div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-category="snack">
+      <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=700" alt="Sandwich">
+      <div class="menu-info">
+        <h3>Garden Sandwich</h3>
+        <p>Fresh and delicious everyday bites.</p>
+        <div class="price">Rs. 250</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="story">
+    <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=900" alt="Cozy cafe interior">
+
+    <div class="story-text">
+      <div class="eyebrow">A LITTLE ABOUT US</div>
+      <h2 class="section-title">More than just coffee.</h2>
+      <p>
+        At Buttercup, we believe the smallest moments
+        can bring the biggest smiles. From your morning
+        coffee to an afternoon treat, we want every visit
+        to feel a little special.
+      </p>
+      <p>
+        Come as you are, take a little break and
+        make yourself at home.
+      </p>
+      <a href="#visit" class="primary-btn">Find Your Way Here</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="eyebrow">LITTLE GLIMPSES</div>
+  <h2 class="section-title">The Buttercup corner</h2>
+  <p class="section-desc">A peek into our cozy little world.</p>
+
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700" alt="Cafe interior">
+    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=700" alt="Coffee">
+    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=700" alt="Cafe space">
+  </div>
+</section>
+
+<section class="section visit" id="visit">
+  <div class="eyebrow">WE WOULD LOVE TO SEE YOU</div>
+  <h2 class="section-title">Come say hello.</h2>
+  <p>
+    Your next favorite coffee moment is waiting.<br>
+    Visit us, relax and enjoy something lovely.
+  </p>
+  <a href="https://wa.me/9779800000000" class="primary-btn">
+    Contact Us on WhatsApp
+  </a>
+  <p>Location: Your city, Nepal</p>
+</section>
+
+<footer>
+  <h2>BUTTERCUP ✿</h2>
+  <p>A little cup of happiness.</p>
+  <p>Good coffee. Sweet moments. Lovely memories.</p>
+  <p class="copyright">© 2026 Buttercup Café. All rights reserved.</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('navlinks').classList.toggle('show');
+}
+
+function closeMenu() {
+  document.getElementById('navlinks').classList.remove('show');
+}
+
+function filterMenu(category, button) {
+  document.querySelectorAll('.filter').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  button.classList.add('active');
+
+  document.querySelectorAll('.menu-card').forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
